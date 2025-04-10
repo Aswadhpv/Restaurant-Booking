@@ -100,34 +100,36 @@ If necessary, you can also include the --remove-orphans flag to clean up any orp
 
 ## Instructions to correctly execute Program:
 
-1. If Using Pytest: 
-  1. Remove Orphans to not to have conflicts:
+1. If Using Pytest:
+   
+  - 1. Remove Orphans to not to have conflicts:
    ```bash
   docker-compose down --remove-orphans 
    ```
-  2. Update the Migration:
+  - 2. Update the Migration:
    ```bash
    docker-compose run app alembic upgrade head
    ```
-  3. Run the Pytest:
+  - 3. Run the Pytest:
    ```bash
   docker-compose run app pytest 
    ```
 
 2. If you are using Docker after Pytest: (Use this instructions if doing first time or after Pytest or else you can directly go to step 4)
-  1. Remove Orphans:
+   
+  - 1. Remove Orphans:
   ```bash
   docker-compose down --remove-orphans
   ```
-  2. Create a new Migration:
+  - 2. Create a new Migration:
   ```bash
   docker-compose run app alembic revision --autogenerate -m "message"
   ```
-  3. Update the Migration:
+  - 3. Update the Migration:
   ```bash
   docker-compose run app alembic upgrade head
   ```
-  4. Run Docker:
+  - 4. Run Docker:
   ```bash
   docker-compose up --build 
   ```
