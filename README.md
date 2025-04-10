@@ -100,7 +100,8 @@ If necessary, you can also include the --remove-orphans flag to clean up any orp
 
 ## Instructions to correctly execute Program:
 
-1. If Using Pytest: 
+1. If Using Pytest:
+   
   1. Remove Orphans to not to have conflicts:
    ```bash
   docker-compose down --remove-orphans 
@@ -115,6 +116,7 @@ If necessary, you can also include the --remove-orphans flag to clean up any orp
    ```
 
 2. If you are using Docker after Pytest: (Use this instructions if doing first time or after Pytest or else you can directly go to step 4)
+   
   1. Remove Orphans:
   ```bash
   docker-compose down --remove-orphans
