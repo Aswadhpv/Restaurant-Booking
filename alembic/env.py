@@ -9,18 +9,22 @@ config = context.config
 # Configure logging from the config file
 fileConfig(config.config_file_name)
 
-# Import your model's MetaData object for 'autogenerate'
+# Insert project root into sys.path for module discovery
 import sys
-import os.path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from app.models import Base  # noqa
+
+# Import the Base and ensure your models are imported
+from app.models import Base
+import app.models.table         # Import table model module
+import app.models.reservation   # Import reservation model module
 
 target_metadata = Base.metadata
 
 def run_migrations_offline():
     url = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/restaurant_db")
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True, dialect_opts={"paramstyle": "named"}
+        url=url, target_metadata=target_metadata, literal_binds=True,
+        dialect_opts={"paramstyle": "named"}
     )
     with context.begin_transaction():
         context.run_migrations()
